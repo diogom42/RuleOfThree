@@ -18,7 +18,7 @@
         app:layout_constraintVertical_bias="0.250">
 
         <EditText
-            android:id="@+id/input1"
+            android:id="@+id/input0"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -28,43 +28,43 @@
             android:layout_marginStart="65dp"
             android:layout_marginTop="80dp"
             android:ems="10"
-            android:inputType="number" />
+            android:inputType="number|numberSigned|numberDecimal" />
+
+        <EditText
+            android:id="@+id/input1"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/input0"
+            android:layout_alignBottom="@+id/input0"
+            android:layout_alignLeft="@+id/input3"
+            android:layout_alignStart="@+id/input3"
+            android:layout_marginTop="80dp"
+            android:ems="10"
+            android:inputType="number|numberSigned|numberDecimal" />
 
         <EditText
             android:id="@+id/input2"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/input1"
-            android:layout_alignBottom="@+id/input1"
-            android:layout_alignLeft="@+id/input4"
-            android:layout_alignStart="@+id/input4"
-            android:layout_marginTop="80dp"
+            android:layout_alignLeft="@+id/input0"
+            android:layout_alignStart="@+id/input0"
+            android:layout_below="@+id/input0"
+            android:layout_marginTop="57dp"
             android:ems="10"
-            android:inputType="number" />
+            android:inputType="number|numberSigned|numberDecimal" />
 
         <EditText
             android:id="@+id/input3"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/input1"
-            android:layout_alignStart="@+id/input1"
-            android:layout_below="@+id/input1"
-            android:layout_marginTop="57dp"
-            android:ems="10"
-            android:inputType="number" />
-
-        <EditText
-            android:id="@+id/input4"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/input3"
-            android:layout_alignBottom="@+id/input3"
+            android:layout_alignBaseline="@+id/input2"
+            android:layout_alignBottom="@+id/input2"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_marginEnd="65dp"
             android:layout_marginRight="60dp"
             android:ems="10"
-            android:inputType="number" />
+            android:inputType="number|numberSigned|numberDecimal" />
 
     </RelativeLayout>
 
