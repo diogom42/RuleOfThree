@@ -1,5 +1,6 @@
 package com.diogofreitas.ruleofthree;
 
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.text.Editable;
@@ -7,6 +8,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -18,7 +20,6 @@ import java.util.Date;
 public class MainActivityFragment extends Fragment {
 
     EditText[] input = new EditText[4];
-    Date[] inputTimes = new Date[4]; // gets the input times of each field
 
     public MainActivityFragment() {
     }
@@ -34,86 +35,19 @@ public class MainActivityFragment extends Fragment {
         input[2]   = view.findViewById(R.id.input2);
         input[3]   = view.findViewById(R.id.input3);
 
-        // initialize inputTimes with current Dates (we need Date values to decide which field is older)
-        for (int i = 0; i < 4; i++) {
-            inputTimes[i] = new Date();
-        }
+        view.findViewById(R.id.buttonEqual).setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                ruleOfThree();
+            }
+        });
+
+        view.findViewById(R.id.buttonCE).setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                CE();
+            }
+        });
 
 //        Toast.makeText(getActivity(), "toast", Toast.LENGTH_SHORT).show();
-
-        // add clicklistener to inputs
-        input[0].addTextChangedListener(
-                new TextWatcher()
-                {
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                    }
-                    public void onTextChanged(CharSequence s, int start, int before, int count) {
-                        if(count == 1 && !isEmpty(input[0])) {
-                            inputTimes[0] = new Date();
-                            ruleOfThree();
-                        } else {
-                            inputTimes[0] = new Date(0);
-                        }
-                    }
-                    public void afterTextChanged(Editable s) {
-
-                    }
-                });
-        input[1].addTextChangedListener(
-                new TextWatcher()
-                {
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                    }
-                    public void onTextChanged(CharSequence s, int start, int before, int count) {
-                        if(count == 1 && !isEmpty(input[1])) {
-                            inputTimes[1] = new Date();
-                            ruleOfThree();
-                        } else {
-                            inputTimes[1] = new Date(0);
-                        }
-                    }
-                    public void afterTextChanged(Editable s) {
-
-                    }
-                });
-        input[2].addTextChangedListener(
-                new TextWatcher()
-                {
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                    }
-                    public void onTextChanged(CharSequence s, int start, int before, int count) {
-                        if(count == 1 && !isEmpty(input[2])) {
-                            inputTimes[2] = new Date();
-                            ruleOfThree();
-                        } else {
-                            inputTimes[2] = new Date(0);
-                        }
-                    }
-                    public void afterTextChanged(Editable s) {
-
-                    }
-                });
-        input[3].addTextChangedListener(
-                new TextWatcher()
-                {
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                    }
-                    public void onTextChanged(CharSequence s, int start, int before, int count) {
-                        if(count == 1 && !isEmpty(input[3])) {
-                            inputTimes[3] = new Date();
-                            ruleOfThree();
-                        } else {
-                            inputTimes[3] = new Date(0);
-                        }
-                    }
-                    public void afterTextChanged(Editable s) {
-
-                    }
-                });
 
         return view;
     }
@@ -131,10 +65,10 @@ public class MainActivityFragment extends Fragment {
         }
 
         //if there are enough fields filled, we can compute the Rule of Three at the oldest one
-        if (numberOfEmptyFields <= 1) {
+        if (numberOfEmptyFields == 1) {
             //look for the oldest field
             for (int i = 0; i < 4; i++) {
-                if (isOldest(i)) {
+                if (isEmpty(input[i])) {
                     float mul1, mul2, div;
                     //decides how to calculate
                     switch (i) {
@@ -163,10 +97,8 @@ public class MainActivityFragment extends Fragment {
                             mul2 = 1;
                             div = 1;
                     }
-                    //update the value of the oldest EditText field
+                    //update the value of the empty EditText field
                     input[i].setText(Float.toString((mul1 * mul2) / div));
-                    //update time of update to the correspondent field
-                    inputTimes[i] = new Date();
                     break;
                 }
             }
@@ -187,16 +119,11 @@ public class MainActivityFragment extends Fragment {
     }
 
     /**
-     * Check if the field of index k is the oldest one
-     * @param k is the index of the EditText field (from 0 to 3)
-     * @return returns true if k is the oldest EditText field and false if it's not
+     * Clear all entries (all EditText fields)
      */
-    public boolean isOldest(int k) {
-        for (int i = 1; i < 4; i++) {
-            if (inputTimes[k].after(inputTimes[(i + k) % 4])) {
-                return false;
-            }
+    public void CE() {
+        for (int i = 0; i < 4; i++) {
+            input[i].setText("");
         }
-        return true;
     }
 }

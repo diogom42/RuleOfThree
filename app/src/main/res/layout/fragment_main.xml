@@ -28,6 +28,7 @@
             android:layout_marginStart="65dp"
             android:layout_marginTop="80dp"
             android:ems="10"
+            android:hint="Valor 1"
             android:inputType="number|numberSigned|numberDecimal" />
 
         <EditText
@@ -40,6 +41,7 @@
             android:layout_alignStart="@+id/input3"
             android:layout_marginTop="80dp"
             android:ems="10"
+            android:hint="Valor 2"
             android:inputType="number|numberSigned|numberDecimal" />
 
         <EditText
@@ -51,6 +53,7 @@
             android:layout_below="@+id/input0"
             android:layout_marginTop="57dp"
             android:ems="10"
+            android:hint="Valor 3"
             android:inputType="number|numberSigned|numberDecimal" />
 
         <EditText
@@ -61,10 +64,31 @@
             android:layout_alignBottom="@+id/input2"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginEnd="65dp"
             android:layout_marginRight="60dp"
             android:ems="10"
+            android:hint="Valor 4"
             android:inputType="number|numberSigned|numberDecimal" />
+
+        <Button
+            android:id="@+id/buttonEqual"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/input3"
+            android:layout_below="@+id/input3"
+            android:layout_marginTop="40dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="="
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/buttonCE"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/buttonEqual"
+            android:layout_toStartOf="@+id/buttonEqual"
+            android:layout_below="@+id/input3"
+            android:layout_marginTop="40dp"
+            android:text="CE" />
 
     </RelativeLayout>
 
